@@ -28,7 +28,7 @@ public class AvaliacaoController {
 
         repository.save(avaliacao);
         return new Response(201, "Avaliacao criada com sucesso");
-        //201 Created : recurso criado com sucesso
+//201 Created : recurso criado com sucesso
     }
 
     @GetMapping
@@ -56,7 +56,7 @@ public class AvaliacaoController {
         repository.save(avaliacao);
 
         return new Response(200, "Avaliacao atualizada com sucesso");
-         //200 OK: requisição bem sucedida 
+//200 OK: requisição bem sucedida 
 
     }
 
@@ -67,12 +67,21 @@ public class AvaliacaoController {
         if (!repository.existsById(id)) {
             return new Response(404, "Avaliacao não encontrada");
         }
-        // Remove o registro; se ocorrer exceção (ex.: constraint), seria interessante
-        // tratar.
+// Remove o registro; se ocorrer exceção (ex.: constraint), seria interessante
+// tratar.
         repository.deleteById(id);
-        // 204 com mensagem textual aqui é informativo; em APIs REST reais 204 costuma
-        // retornar sem corpo.
+// 204 com mensagem textual aqui é informativo; em APIs REST reais 204 costuma
+// retornar sem corpo.
         return new Response(204, "Avaliacao deletada com successo");
+        
+    }
+
+    public AvaliacaoRepository getRepository() {
+        return repository;
+    }
+
+    public void setRepository(AvaliacaoRepository repository) {
+        this.repository = repository;
     }
 }   
 
