@@ -43,17 +43,17 @@ public class CategoriaController {
             return new Response(404, "Categoria não encontrada");
 //404 Not Found: recurso não encontrado 
         }
-        Categoria Categoria = repository.findById(id).get();
+        Categoria categoria = repository.findById(id).get();
 
         if (updated.getNome() != null) {
-            Categoria.setNome(updated.getNome());
+            categoria.setNome(updated.getNome());
         }
         if (updated.getDescricao() != null) {
-            Categoria.setDescricao(updated.getDescricao());
+            categoria.setDescricao(updated.getDescricao());
         }
         
 
-        repository.save(Categoria);
+        repository.save(categoria);
 
         return new Response(200, "Categoria atualizada com sucesso");
          //200 OK: requisição bem sucedida 

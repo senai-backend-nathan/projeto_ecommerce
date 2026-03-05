@@ -27,7 +27,7 @@ public class ClienteController {
     public Response createCliente(@Valid @RequestBody Cliente cliente) {
 
         repository.save(cliente);
-        return new Response(201, "Cliente criada com sucesso");
+        return new Response(201, "Cliente criado com sucesso");
         //201 Created : recurso criado com sucesso
     }
 
@@ -43,19 +43,19 @@ public class ClienteController {
             return new Response(404, "Cliente não encontrado");
 //404 Not Found: recurso não encontrado 
         }
-        Cliente Cliente = repository.findById(id).get();
+        Cliente cliente = repository.findById(id).get();
 
         if (updated.getNome() != null) {
-            Cliente.setNome(updated.getNome());
+            cliente.setNome(updated.getNome());
         }
         if (updated.getEmail() != null) {
-            Cliente.setEmail(updated.getEmail());
+            cliente.setEmail(updated.getEmail());
         }
         
 
-        repository.save(Cliente);
+        repository.save(cliente);
 
-        return new Response(200, "Cliente atualizada com sucesso");
+        return new Response(200, "Cliente atualizado com sucesso");
          //200 OK: requisição bem sucedida 
 
     }
@@ -65,14 +65,14 @@ public class ClienteController {
     public Response deleteCliente(@PathVariable Long id) {
         // Verifica existência para retornar um erro amigável se não encontrado.
         if (!repository.existsById(id)) {
-            return new Response(404, "Cliente não encontrada");
+            return new Response(404, "Cliente não encontrado");
         }
         // Remove o registro; se ocorrer exceção (ex.: constraint), seria interessante
         // tratar.
         repository.deleteById(id);
         // 204 com mensagem textual aqui é informativo; em APIs REST reais 204 costuma
         // retornar sem corpo.
-        return new Response(204, "Cliente deletada com successo");
+        return new Response(204, "Cliente deletado com successo");
     }
     
 }

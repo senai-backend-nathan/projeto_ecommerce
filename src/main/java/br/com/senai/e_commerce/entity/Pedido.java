@@ -6,6 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Pedido {
@@ -13,7 +16,13 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 //aplicações da fk cliente e fk produto 
-
+    @ManyToOne
+    @JoinColumn (name = "fk_cliente")
+    private Cliente cliente;
+    
+    @OneToMany
+    @JoinColumn (name = "fk_produto")
+    private Produto produto;
 
     private LocalDateTime data;
     private Integer quantidade;
@@ -41,6 +50,22 @@ public class Pedido {
     }
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
     
 }
