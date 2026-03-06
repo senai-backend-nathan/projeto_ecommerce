@@ -18,7 +18,7 @@ import br.com.senai.e_commerce.repository.ClienteRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping
+@RequestMapping ("/Cliente")
 public class ClienteController {
       @Autowired
     private ClienteRepository repository;
