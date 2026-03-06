@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/Categoria")
 public class CategoriaController {
-     @Autowired
+    @Autowired
     private CategoriaRepository repository;
 
     @PostMapping
@@ -28,7 +28,7 @@ public class CategoriaController {
 
         repository.save(categoria);
         return new Response(201, "Categoria criada com sucesso");
-        //201 Created : recurso criado com sucesso
+        // 201 Created : recurso criado com sucesso
     }
 
     @GetMapping
@@ -38,10 +38,10 @@ public class CategoriaController {
     }
 
     @PutMapping("{id}")
-    public Response updateCategoria(@PathVariable Long id, @RequestBody Categoria updated){
+    public Response updateCategoria(@PathVariable Long id, @RequestBody Categoria updated) {
         if (!repository.existsById(id)) {
             return new Response(404, "Categoria não encontrada");
-//404 Not Found: recurso não encontrado 
+            // 404 Not Found: recurso não encontrado
         }
         Categoria categoria = repository.findById(id).get();
 
@@ -51,15 +51,13 @@ public class CategoriaController {
         if (updated.getDescricao() != null) {
             categoria.setDescricao(updated.getDescricao());
         }
-        
 
         repository.save(categoria);
 
         return new Response(200, "Categoria atualizada com sucesso");
-         //200 OK: requisição bem sucedida 
+        // 200 OK: requisição bem sucedida
 
     }
-
 
     @DeleteMapping("{id}")
     public Response deleteCategoria(@PathVariable Long id) {

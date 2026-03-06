@@ -1,6 +1,7 @@
 package br.com.senai.e_commerce.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +10,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Pedido {
@@ -20,12 +24,15 @@ public class Pedido {
     @JoinColumn (name = "fk_cliente")
     private Cliente cliente;
     
-    @OneToMany
-    @JoinColumn (name = "fk_produto")
-    private Produto produto;
+    @OneToMany(mappedBy = "pedido" )
+    private List<Produto> produtos;
 
+
+    @PastOrPresent
     private LocalDateTime data;
+    @Positive
     private Integer quantidade;
+    @NotNull
     private Boolean status;
     public Long getId() {
         return id;
@@ -59,13 +66,12 @@ public class Pedido {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-
-    public Produto getProduto() {
-        return produto;
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
     
 }

@@ -7,6 +7,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -14,11 +17,18 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String nome;
+    @Email
     private String email;
+    @Size (min = 8, max = 8)
     private String endereco;
-     @OneToMany(mappedBy = "cliente")
-    private List<Produto> produtos;
+
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos;
+
+
     @OneToMany(mappedBy = "cliente")
     private List<Avaliacao> avaliacaos;
 
@@ -47,14 +57,6 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
-
     public List<Avaliacao> getAvaliacaos() {
         return avaliacaos;
     }
@@ -62,5 +64,13 @@ public class Cliente {
     public void setAvaliacaos(List<Avaliacao> avaliacaos) {
         this.avaliacaos = avaliacaos;
     }
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    
     
 }

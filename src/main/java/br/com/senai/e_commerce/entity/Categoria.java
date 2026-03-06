@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity
@@ -15,6 +16,7 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String nome;
     private String descricao;
     @OneToMany(mappedBy = "categoria")

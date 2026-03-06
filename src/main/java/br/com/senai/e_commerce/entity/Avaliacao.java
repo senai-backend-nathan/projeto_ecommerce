@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Avaliacao {
@@ -19,6 +21,7 @@ public class Avaliacao {
     @ManyToOne
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
+    @NotNull @Min(1)
     private Integer nota;
     private String comentario;
     public Long getId() {
