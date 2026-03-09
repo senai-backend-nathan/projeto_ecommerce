@@ -2,6 +2,8 @@ package br.com.senai.e_commerce.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,9 +25,10 @@ public class Produto {
     @NotNull @Positive
     private Integer preco; 
      @ManyToOne
+     @JsonIgnore
      @JoinColumn (name = "fk_pedido")
     private Pedido pedido ;
-
+     @JsonIgnore
      @OneToMany(mappedBy = "produto")
     private List<Avaliacao> avaliacaos;
 

@@ -1,5 +1,7 @@
 package br.com.senai.e_commerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,12 +19,15 @@ public class Avaliacao {
 //aplicação das fk produto e fk cliente 
     @ManyToOne
     @JoinColumn (name = "fk_produto")
+    @JsonIgnore
     private Produto produto;
     @ManyToOne
     @JoinColumn(name = "fk_cliente")
+    @JsonIgnore
     private Cliente cliente;
     @NotNull @Min(1)
     private Integer nota;
+    @NotNull
     private String comentario;
     public Long getId() {
         return id;

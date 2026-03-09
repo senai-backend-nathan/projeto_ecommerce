@@ -2,6 +2,8 @@ package br.com.senai.e_commerce.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,15 +23,16 @@ public class Cliente {
     private String nome;
     @Email
     private String email;
-    @Size (min = 8, max = 8)
+    @Size (min = 8, max = 80)
     private String endereco;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos;
-
-
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
+    
     private List<Avaliacao> avaliacaos;
 
     public Long getId() {

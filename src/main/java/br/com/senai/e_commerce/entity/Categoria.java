@@ -2,6 +2,8 @@ package br.com.senai.e_commerce.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Categoria {
     private String nome;
     private String descricao;
     @OneToMany(mappedBy = "categoria")
+    @JsonIgnore
     private List<Produto> produtos;
     public Long getId() {
         return id;

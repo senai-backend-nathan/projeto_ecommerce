@@ -3,6 +3,8 @@ package br.com.senai.e_commerce.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,8 +24,9 @@ public class Pedido {
 //aplicações da fk cliente e fk produto 
     @ManyToOne
     @JoinColumn (name = "fk_cliente")
+    @JsonIgnore
     private Cliente cliente;
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "pedido" )
     private List<Produto> produtos;
 
