@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: projeto-integrador
+    runtime: docker # Alterado de 'env' para 'runtime' (padrão do Render)
+    plan: free
+    autoDeploy: true
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: JAVA_OPTS
+        value: "-Xms256m -Xmx512m"
+      # O Render injeta a PORT automaticamente, mas é bom manter
+      - key: PORT
+        value: 8080
+      # Conectando com as variáveis que colocamos no application.properties
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: db-projeto
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: db-projeto
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: db-projeto
+          property: password
+
+# Esta seção cria o banco de dados automaticamente
+databases:
+  - name: db-projeto
+    plan: free
+    region: oregon
