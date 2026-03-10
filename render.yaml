@@ -33,3 +33,6 @@ databases:
   - name: db-projeto
     plan: free
     region: oregon
+  - key: SPRING_DATASOURCE_URL
+        # Removemos o 'fromDatabase' direto e usamos o valor com prefixo
+    value: jdbc:${INTERNAL_DATABASE_URL}
